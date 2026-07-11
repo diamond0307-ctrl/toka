@@ -54,47 +54,24 @@
         background: linear-gradient(180deg, rgba(5, 4, 6, 0.02) 55%, rgba(5, 4, 6, 0.34));
       }
 
+      /* The TOKA WORLD lettering is knocked out of a solid dark panel, so the
+         hero video is only visible through the text; everything else stays
+         solid dark. */
       .hero__film-mark {
         position: absolute;
         inset: 0;
         z-index: 1;
-        margin: 0;
-        display: grid;
-        place-items: center;
-        padding: 5vw;
-        color: #fff;
-        background: rgba(5, 4, 6, 0.84);
-        font: 900 clamp(70px, 17vw, 260px) / 0.78 "Anton", "Archivo Black", sans-serif;
-        letter-spacing: -0.055em;
-        text-align: center;
-        text-shadow: 8px 8px 0 #ff19c8, -5px -5px 0 #7cff00;
-        opacity: 0;
-        transform: scale(0.3) rotate(-4deg);
-        transition: none;
+        width: 100%;
+        height: 100%;
+        display: block;
       }
 
-      .hero__film.is-title .hero__film-mark {
-        animation: toka-title-pop 0.48s cubic-bezier(0.16, 1.35, 0.3, 1) forwards;
-      }
-
-      @keyframes toka-title-pop {
-        0% {
-          opacity: 0;
-          transform: scale(0.3) rotate(-4deg);
-        }
-        72% {
-          opacity: 1;
-          transform: scale(1.08) rotate(1deg);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1) rotate(0);
-        }
-      }
-
-      .hero__film.is-ending .hero__film-mark {
-        opacity: 1;
-        transform: scale(1);
+      .hero__film-cut-text {
+        fill: #000;
+        font-family: "Anton", "Archivo Black", sans-serif;
+        font-weight: 900;
+        font-size: 300px;
+        letter-spacing: -12px;
       }
 
       @media (min-width: 900px) {
@@ -172,9 +149,9 @@
     <header class="site-nav" aria-label="TOKA site navigation">
       <a class="site-nav__brand" href="./" aria-label="TOKA home">TOKA</a>
       <nav class="site-nav__links" aria-label="Primary navigation">
-        <a href="#works">WORKS</a>
+        <a href="#shop" class="site-nav__link--primary">SHOP</a>
         <a href="#about">ABOUT</a>
-        <a href="#works">SHOP</a>
+        <a href="https://www.instagram.com/toka_art010?igsh=cGN6dW52Zm1oMm04" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
       </nav>
       <button class="site-nav__menu" type="button" aria-label="Open menu">
         MENU
@@ -194,7 +171,42 @@
           >
             <source src="./assets/toka-hero-intro.mp4" type="video/mp4" />
           </video>
-          <p class="hero__film-mark">TOKA<br />WORLD</p>
+          <svg
+            class="hero__film-mark"
+            viewBox="0 0 1000 2000"
+            preserveAspectRatio="xMidYMid slice"
+            aria-hidden="true"
+          >
+            <defs>
+              <mask id="toka-world-cut">
+                <rect x="0" y="0" width="1000" height="2000" fill="#fff" />
+                <text
+                  class="hero__film-cut-text"
+                  x="500"
+                  y="960"
+                  text-anchor="middle"
+                >
+                  TOKA
+                </text>
+                <text
+                  class="hero__film-cut-text"
+                  x="500"
+                  y="1270"
+                  text-anchor="middle"
+                >
+                  WORLD
+                </text>
+              </mask>
+            </defs>
+            <rect
+              x="0"
+              y="0"
+              width="1000"
+              height="2000"
+              fill="#050406"
+              mask="url(#toka-world-cut)"
+            />
+          </svg>
         </div>
 
         <div class="hero__void" aria-hidden="true"></div>
@@ -266,10 +278,27 @@
         </div>
       </section>
 
-      <section class="selected-works" id="works" aria-label="All works">
+      <section class="shop-banner" aria-label="Shop information">
+        <div class="shop-banner__inner">
+          <div class="shop-banner__content">
+            <p class="shop-banner__label">AVAILABLE NOW</p>
+            <h2>ORIGINAL ARTWORKS</h2>
+            <p class="shop-banner__range">¥5,000 - ¥55,000</p>
+            <div class="shop-banner__features">
+              <span class="shop-banner__feature">✦ Limited editions</span>
+              <span class="shop-banner__feature">✦ Worldwide shipping</span>
+              <span class="shop-banner__feature">✦ Certificate included</span>
+            </div>
+            <a href="#shop" class="shop-banner__cta">EXPLORE WORKS</a>
+          </div>
+          <div class="shop-banner__visual" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section class="selected-works" id="shop" aria-label="Shop works">
         <div class="selected-works__intro">
-          <p class="selected-works__eyebrow">ALL WORKS</p>
-          <h2>TOUCH THE ART</h2>
+          <p class="selected-works__eyebrow">COLLECTION</p>
+          <h2>SHOP NOW</h2>
         </div>
         <div class="works-grid" data-works-grid></div>
       </section>
@@ -323,19 +352,28 @@
     </main>
 
     <footer class="site-footer">
-      <div class="site-footer__links">
-        <span>TOKA WORLD</span>
-        <a
-          href="https://www.instagram.com/toka_art010?igsh=cGN6dW52Zm1oMm04"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Instagram
-        </a>
-        <a href="mailto:hello@example.com">Contact</a>
-        <span>© TOKA</span>
+      <div class="site-footer__sections">
+        <div class="site-footer__section">
+          <h3>ABOUT</h3>
+          <a href="https://www.instagram.com/toka_art010?igsh=cGN6dW52Zm1oMm04" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="mailto:contact@toka-world.com">Contact</a>
+        </div>
+        <div class="site-footer__section">
+          <h3>SHOP</h3>
+          <p>Mon - Sun: 12:00 - 20:00</p>
+          <p>🌍 Worldwide shipping available</p>
+        </div>
+        <div class="site-footer__section">
+          <h3>INFO</h3>
+          <p>Shipping within 7-14 days</p>
+          <p>Free shipping on orders over ¥100,000</p>
+        </div>
       </div>
-      <p>TOKA</p>
+      <div class="site-footer__bottom">
+        <span>TOKA WORLD</span>
+        <span>© TOKA 2026</span>
+      </div>
+      <p class="site-footer__mark">TOKA</p>
     </footer>
 
     <section
@@ -429,19 +467,16 @@
     <script src="./script.js" defer></script>
     <script>
       (() => {
-        const film = document.querySelector("[data-hero-film]");
         const video = document.querySelector("[data-hero-film-video]");
-        if (!film || !video) return;
+        if (!video) return;
 
-        const TITLE_AT = 3.0;
-        let finished = false;
+        let frozen = false;
 
-        // Freeze on the video's final frame (with the TOKA WORLD title) and
-        // keep it as the resting state. The static hero behind stays hidden.
-        const freezeFilm = () => {
-          if (finished) return;
-          finished = true;
-          film.classList.add("is-title", "is-ending");
+        // Hold the video on its final frame so the TOKA WORLD cut-out keeps
+        // showing the last frame instead of looping or going blank.
+        const freeze = () => {
+          if (frozen) return;
+          frozen = true;
           try {
             video.pause();
           } catch (err) {
@@ -449,39 +484,21 @@
           }
         };
 
-        // Fallback only: if the video cannot play, reveal the hero underneath.
-        const revealHero = () => {
-          if (finished) return;
-          finished = true;
-          film.classList.add("is-fading");
-          window.setTimeout(() => {
-            video.pause();
-            film.remove();
-          }, 550);
-        };
-
         video.addEventListener("timeupdate", () => {
-          if (video.currentTime >= TITLE_AT) {
-            film.classList.add("is-title");
-          }
           const dur = video.duration;
-          if (dur) {
-            if (video.currentTime >= dur - 0.4) {
-              film.classList.add("is-ending");
-            }
-            // Pause just before the true end so the last frame stays put
-            // (avoids the iOS "ended" state that can flash a play button).
-            if (video.currentTime >= dur - 0.05) {
-              freezeFilm();
-            }
+          // Pause a hair before the true end (avoids the iOS "ended" state that
+          // can flash a play button over the last frame).
+          if (dur && video.currentTime >= dur - 0.25) {
+            freeze();
           }
         });
-        video.addEventListener("ended", freezeFilm);
-        video.addEventListener("error", revealHero);
+        video.addEventListener("ended", freeze);
 
         const play = video.play();
         if (play && typeof play.catch === "function") {
-          play.catch(revealHero);
+          play.catch(() => {
+            /* autoplay blocked: leave the poster frame showing */
+          });
         }
       })();
     </script>
