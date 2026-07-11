@@ -19,6 +19,103 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050406'/%3E%3Ctext x='7' y='42' fill='%23ff19c8' font-size='24' font-family='Arial' font-weight='900'%3ETK%3C/text%3E%3C/svg%3E"
     />
     <link rel="stylesheet" href="./styles.css" />
+    <style>
+      /* One-shot TOKA hero film. The existing hero remains the final frame. */
+      .hero__film {
+        position: absolute;
+        inset: 0;
+        z-index: 40;
+        overflow: hidden;
+        background: #050406;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 0.55s;
+        pointer-events: none;
+      }
+
+      .hero__film.is-fading {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .hero__film-video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: 50% 42%;
+      }
+
+      .hero__film::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(5, 4, 6, 0.02) 55%, rgba(5, 4, 6, 0.34));
+      }
+
+      .hero__film-mark {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 5vw;
+        color: #fff;
+        background: rgba(5, 4, 6, 0.84);
+        font: 900 clamp(70px, 17vw, 260px) / 0.78 "Anton", "Archivo Black", sans-serif;
+        letter-spacing: -0.055em;
+        text-align: center;
+        text-shadow: 8px 8px 0 #ff19c8, -5px -5px 0 #7cff00;
+        opacity: 0;
+        transform: scale(0.3) rotate(-4deg);
+        transition: none;
+      }
+
+      .hero__film.is-title .hero__film-mark {
+        animation: toka-title-pop 0.48s cubic-bezier(0.16, 1.35, 0.3, 1) forwards;
+      }
+
+      @keyframes toka-title-pop {
+        0% {
+          opacity: 0;
+          transform: scale(0.3) rotate(-4deg);
+        }
+        72% {
+          opacity: 1;
+          transform: scale(1.08) rotate(1deg);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) rotate(0);
+        }
+      }
+
+      .hero__film.is-ending .hero__film-mark {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      @media (min-width: 900px) {
+        .hero__film-video {
+          object-fit: contain;
+          object-position: 50% 50%;
+        }
+
+        .hero__film {
+          background:
+            radial-gradient(circle at 50% 45%, rgba(255, 25, 200, 0.14), transparent 44%),
+            #050406;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero__film {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="site-splashes" aria-hidden="true">
@@ -86,6 +183,20 @@
 
     <main>
       <section class="hero" aria-label="TOKA WORLD">
+        <div class="hero__film" data-hero-film aria-hidden="true">
+          <video
+            class="hero__film-video"
+            data-hero-film-video
+            muted
+            playsinline
+            preload="auto"
+            poster="./assets/toka-hero-original.png"
+          >
+            <source src="./assets/toka-hero-intro.mp4" type="video/mp4" />
+          </video>
+          <p class="hero__film-mark">TOKA<br />WORLD</p>
+        </div>
+
         <div class="hero__void" aria-hidden="true"></div>
 
         <h1 class="hero__title" aria-label="TOKA WORLD">
@@ -316,5 +427,44 @@
       defer
     ></script>
     <script src="./script.js" defer></script>
+    <script>
+      (() => {
+        const film = document.querySelector("[data-hero-film]");
+        const video = document.querySelector("[data-hero-film-video]");
+        if (!film || !video) return;
+
+        const TITLE_AT = 3.0;
+        const END_AT = 4.0;
+        let finished = false;
+
+        const revealHero = () => {
+          if (finished) return;
+          finished = true;
+          film.classList.add("is-ending");
+          window.setTimeout(() => film.classList.add("is-fading"), 170);
+          window.setTimeout(() => {
+            video.pause();
+            film.remove();
+          }, 850);
+        };
+
+        video.addEventListener("timeupdate", () => {
+          if (video.currentTime >= TITLE_AT) {
+            film.classList.add("is-title");
+          }
+          if (video.currentTime >= END_AT - 0.45) {
+            film.classList.add("is-ending");
+          }
+          if (video.currentTime >= END_AT) revealHero();
+        });
+        video.addEventListener("ended", revealHero);
+        video.addEventListener("error", revealHero);
+
+        const play = video.play();
+        if (play && typeof play.catch === "function") {
+          play.catch(revealHero);
+        }
+      })();
+    </script>
   </body>
 </html>
