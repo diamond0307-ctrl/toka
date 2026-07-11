@@ -258,6 +258,7 @@
     const drops = document.querySelectorAll(".hero__drop");
     const splashes = document.querySelectorAll(".site-splash");
     const enter = document.querySelector(".hero__enter");
+    const filmCutout = document.querySelector("[data-film-cutout]");
 
     if (
       !hero ||
@@ -396,6 +397,14 @@
           anticipatePin: 1,
         },
       })
+      // Full-screen intro video resolves into the TOKA WORLD cut-out as the
+      // hero is scrolled: the dark panel fades in, leaving only the letters.
+      .fromTo(
+        filmCutout,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.9, ease: "power1.inOut" },
+        0
+      )
       .to(titleToka, { x: "-5vw", y: "-3vh", opacity: 0.76 }, 0.06)
       .to(titleWorld, { x: "6vw", y: "4vh", opacity: 0.72 }, 0.06)
       .to(drops, { rotate: 12, scale: 1.12, opacity: 0.42 }, 0.1)
@@ -539,6 +548,14 @@
           const layout = work.layout || "square";
           const align = ["left", "center", "right"][index % 3];
 
+          // バッジを判定
+          let badgeHTML = "";
+          if (work.status === "sold") {
+            badgeHTML = '<span class="work-card__badge work-card__badge--sold">SOLD</span>';
+          } else if (work.priceValue) {
+            badgeHTML = `<span class="work-card__badge">${escapeHtml(work.price)}</span>`;
+          }
+
           return `
             <button
               class="work-card work-card--${layout} work-card--${align}"
@@ -548,6 +565,7 @@
             >
               <span class="work-card__image-wrap">
                 <img class="work-card__image" src="${escapeHtml(work.mainImage)}" alt="${escapeHtml(work.title)}" loading="lazy" />
+                ${badgeHTML}
               </span>
               <span class="work-card__meta">
                 <span class="work-card__number">${escapeHtml(work.number)}</span>
@@ -610,9 +628,16 @@
       modalDescription.textContent = activeWork.description;
       modalPrice.textContent = activeWork.price;
       purchaseNote.textContent = "";
-      purchaseButton.textContent = activeWork.status === "sold" ? "SOLD" : "PURCHASE THIS WORK";
-      purchaseButton.disabled = activeWork.status === "sold";
-      purchaseButton.setAttribute("aria-disabled", activeWork.status === "sold" ? "true" : "false");
+      
+      if (activeWork.status === "sold") {
+        purchaseButton.textContent = "✓ SOLD";
+        purchaseButton.disabled = true;
+        purchaseButton.setAttribute("aria-disabled", "true");
+      } else {
+        purchaseButton.textContent = "BUY NOW";
+        purchaseButton.disabled = false;
+        purchaseButton.setAttribute("aria-disabled", "false");
+      }
       modalSpecs.innerHTML = specRows
         .map(([label, key]) => {
           const value = key === "status" ? displayStatus(activeWork.status) : activeWork[key];
@@ -790,15 +815,23 @@
 
     const handlePurchase = () => {
       if (activeWork.status === "sold") {
+        purchaseNote.textContent = "申し訳ございません。この作品は売約済みです。";
+        purchaseButton.setAttribute("aria-disabled", "true");
+        purchaseButton.disabled = true;
         return;
       }
 
       if (activeWork.paymentUrl) {
+        purchaseNote.textContent = "お支払い画面に遷移します...";
         window.open(activeWork.paymentUrl, "_blank", "noopener,noreferrer");
         return;
       }
 
-      purchaseNote.textContent = "購入についてはお問い合わせください";
+      purchaseNote.textContent = "✓ ご購入ありがとうございます。詳細はメールでお知らせします。";
+      purchaseButton.textContent = "お問い合わせする";
+      purchaseButton.addEventListener("click", () => {
+        window.location.href = "mailto:contact@toka-world.com?subject=作品購入について";
+      }, { once: true });
     };
 
     renderWorks();

@@ -74,6 +74,12 @@
         letter-spacing: -12px;
       }
 
+      /* The dark cut-out panel starts hidden so the intro plays full-screen;
+         scrolling fades it in (via GSAP) to resolve into the TOKA WORLD frame. */
+      .hero__film-cut-panel {
+        opacity: 0;
+      }
+
       @media (min-width: 900px) {
         .hero__film-video {
           object-fit: contain;
@@ -199,6 +205,8 @@
               </mask>
             </defs>
             <rect
+              class="hero__film-cut-panel"
+              data-film-cutout
               x="0"
               y="0"
               width="1000"
