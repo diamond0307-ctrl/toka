@@ -434,30 +434,49 @@
         if (!film || !video) return;
 
         const TITLE_AT = 3.0;
-        const END_AT = 4.0;
         let finished = false;
 
+        // Freeze on the video's final frame (with the TOKA WORLD title) and
+        // keep it as the resting state. The static hero behind stays hidden.
+        const freezeFilm = () => {
+          if (finished) return;
+          finished = true;
+          film.classList.add("is-title", "is-ending");
+          try {
+            video.pause();
+          } catch (err) {
+            /* ignore */
+          }
+        };
+
+        // Fallback only: if the video cannot play, reveal the hero underneath.
         const revealHero = () => {
           if (finished) return;
           finished = true;
-          film.classList.add("is-ending");
-          window.setTimeout(() => film.classList.add("is-fading"), 170);
+          film.classList.add("is-fading");
           window.setTimeout(() => {
             video.pause();
             film.remove();
-          }, 850);
+          }, 550);
         };
 
         video.addEventListener("timeupdate", () => {
           if (video.currentTime >= TITLE_AT) {
             film.classList.add("is-title");
           }
-          if (video.currentTime >= END_AT - 0.45) {
-            film.classList.add("is-ending");
+          const dur = video.duration;
+          if (dur) {
+            if (video.currentTime >= dur - 0.4) {
+              film.classList.add("is-ending");
+            }
+            // Pause just before the true end so the last frame stays put
+            // (avoids the iOS "ended" state that can flash a play button).
+            if (video.currentTime >= dur - 0.05) {
+              freezeFilm();
+            }
           }
-          if (video.currentTime >= END_AT) revealHero();
         });
-        video.addEventListener("ended", revealHero);
+        video.addEventListener("ended", freezeFilm);
         video.addEventListener("error", revealHero);
 
         const play = video.play();
