@@ -176,7 +176,13 @@ main,
 }
 
 .site-nav__links a:hover {
-  color: var(--blood);
+  color: #ff19c8;
+}
+
+.site-nav__link--primary {
+  color: #ff19c8;
+  font-weight: bold;
+  letter-spacing: 0.12em;
 }
 
 .site-nav__menu {
@@ -374,6 +380,96 @@ main,
   transform: rotate(45deg);
 }
 
+.shop-banner {
+  padding: clamp(58px, 8vw, 120px) clamp(18px, 5vw, 72px);
+  background: linear-gradient(135deg, rgba(255, 25, 200, 0.08) 0%, rgba(124, 255, 0, 0.04) 100%);
+  border-top: 1px solid rgba(255, 25, 200, 0.18);
+  border-bottom: 1px solid rgba(255, 25, 200, 0.12);
+  color: var(--paper);
+}
+
+.shop-banner__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 8vw, 96px);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.shop-banner__label {
+  margin: 0 0 12px;
+  color: #ff19c8;
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+}
+
+.shop-banner__content h2 {
+  margin: 0 0 18px;
+  color: rgba(255, 25, 200, 0.88);
+  font-family: "Anton", "Archivo Black", Impact, sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.shop-banner__range {
+  margin: 0 0 24px;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(242, 238, 232, 0.76);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.shop-banner__features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+.shop-banner__feature {
+  font-size: 0.9rem;
+  color: rgba(242, 238, 232, 0.68);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.shop-banner__cta {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #ff19c8;
+  color: #050406;
+  font-size: 0.78rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border-radius: 2px;
+  transition: all 280ms ease;
+}
+
+.shop-banner__cta:hover {
+  background: rgba(255, 25, 200, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255, 25, 200, 0.24);
+}
+
+.shop-banner__visual {
+  background: radial-gradient(circle at 70% 30%, rgba(255, 25, 200, 0.16), transparent 60%);
+  border-radius: 1px;
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .shop-banner__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-banner__visual {
+    display: none;
+  }
+}
+
 .selected-works {
   min-height: 100svh;
   min-height: 100dvh;
@@ -471,6 +567,31 @@ main,
 
 .work-card:nth-child(4n) {
   --work-rotate: 0.75deg;
+}
+
+.work-card__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 6px 14px;
+  background: #ff19c8;
+  color: #050406;
+  font-size: 0.68rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border-radius: 1px;
+  transform: rotate(2deg);
+}
+
+.work-card__badge--sold {
+  background: #7d1024;
+  color: var(--paper);
+}
+
+.work-card__badge--limited {
+  background: #7cff28;
+  color: #050406;
 }
 
 .work-card__image-wrap {
@@ -729,18 +850,50 @@ main,
   width: min(100%, 360px);
   min-height: 54px;
   padding: 18px;
-  border-color: var(--blood);
-  background: var(--blood);
+  border: 0;
+  border-radius: 2px;
+  background: #ff19c8;
+  color: #050406;
   font-size: 0.82rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
   text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 25, 200, 0.32);
+  transition: all 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.purchase-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 600ms ease;
+}
+
+.purchase-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 42px rgba(255, 25, 200, 0.48);
+}
+
+.purchase-button:hover::before {
+  transform: translateX(100%);
+}
+
+.purchase-button:active {
+  transform: translateY(-1px);
 }
 
 .purchase-button:disabled,
 .purchase-button[aria-disabled="true"] {
-  border-color: rgba(242, 238, 232, 0.24);
-  background: rgba(242, 238, 232, 0.08);
-  color: rgba(242, 238, 232, 0.42);
+  background: rgba(242, 238, 232, 0.12);
+  color: rgba(242, 238, 232, 0.48);
   cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
 .work-modal__purchase-note {
@@ -942,27 +1095,74 @@ main,
 
 .site-footer {
   overflow: hidden;
-  padding: 34px clamp(18px, 5vw, 72px) 0;
-  background: rgba(5, 4, 6, 0.9);
+  padding: clamp(72px, 10vw, 144px) clamp(18px, 5vw, 72px) clamp(48px, 8vw, 96px);
+  background: rgba(5, 4, 6, 0.95);
   color: var(--paper);
+  border-top: 1px solid rgba(255, 25, 200, 0.12);
 }
 
-.site-footer__links {
+.site-footer__sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(48px, 6vw, 72px);
+  margin: 0 auto clamp(64px, 10vw, 128px);
+  max-width: 1200px;
+}
+
+.site-footer__section {
+  padding: 0;
+}
+
+.site-footer__section h3 {
+  margin: 0 0 18px;
+  color: #ff19c8;
+  font-family: "Anton", "Archivo Black", Impact, sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.site-footer__section a {
+  display: block;
+  margin: 0 0 12px;
+  color: rgba(242, 238, 232, 0.72);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  transition: color 180ms ease;
+}
+
+.site-footer__section a:hover {
+  color: #ff19c8;
+}
+
+.site-footer__section p {
+  margin: 0 0 10px;
+  color: rgba(242, 238, 232, 0.68);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.site-footer__bottom {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px clamp(18px, 4vw, 48px);
+  justify-content: space-between;
   align-items: center;
-  color: rgba(242, 238, 232, 0.72);
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(255, 25, 200, 0.08);
+  color: rgba(242, 238, 232, 0.52);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.08em;
 }
 
-.site-footer p {
-  margin: 44px 0 -0.14em;
-  color: rgba(242, 238, 232, 0.08);
+.site-footer__mark {
+  margin: clamp(32px, 6vw, 64px) 0 -0.14em;
+  color: rgba(242, 238, 232, 0.06);
   font-family: "Anton", "Archivo Black", Impact, sans-serif;
-  font-size: clamp(8rem, 32vw, 31rem);
+  font-size: clamp(6rem, 28vw, 24rem);
   font-weight: 400;
   line-height: 0.78;
   letter-spacing: 0;
@@ -1047,6 +1247,70 @@ main,
   :root {
     --nav-height: 60px;
     --hero-title-size: clamp(5.1rem, 28vw, 7.4rem);
+  }
+
+  /* Mobile only: turn the works list into a dense, swipeable 2-row gallery
+     (horizontal scroll, hidden scrollbar, momentum). PC layout is untouched.
+     Selectors are scoped to .selected-works so they win over the desktop grid. */
+  .selected-works .works-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-template-rows: repeat(2, auto);
+    grid-auto-columns: 46vw;
+    gap: 20px 12px;
+    align-items: start;
+    margin-inline: calc(-1 * clamp(18px, 5vw, 72px));
+    padding-inline: clamp(18px, 5vw, 72px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: clamp(18px, 5vw, 72px);
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .selected-works .works-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Every card becomes one equal cell — drop the masonry spans, offsets, tilt.
+     Cards show immediately (no per-card reveal) so the wall reads as "full". */
+  .selected-works .work-card {
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    margin-top: 0;
+    --work-rotate: 0deg;
+    opacity: 1;
+    transform: none;
+    scroll-snap-align: start;
+  }
+
+  /* Uniform square thumbs keep the image ratio (cover, no distortion) and read
+     as a packed gallery wall. */
+  .selected-works .work-card__image-wrap {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  .selected-works .work-card__image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+
+  .selected-works .work-card__meta {
+    padding-top: 8px;
+    gap: 3px;
+  }
+
+  .selected-works .work-card__title {
+    font-size: 0.95rem;
+    line-height: 1.06;
   }
 
   .site-nav {

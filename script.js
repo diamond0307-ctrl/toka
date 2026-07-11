@@ -258,7 +258,6 @@
     const drops = document.querySelectorAll(".hero__drop");
     const splashes = document.querySelectorAll(".site-splash");
     const enter = document.querySelector(".hero__enter");
-    const filmCutout = document.querySelector("[data-film-cutout]");
 
     if (
       !hero ||
@@ -397,14 +396,6 @@
           anticipatePin: 1,
         },
       })
-      // Full-screen intro video resolves into the TOKA WORLD cut-out as the
-      // hero is scrolled: the dark panel fades in, leaving only the letters.
-      .fromTo(
-        filmCutout,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.9, ease: "power1.inOut" },
-        0
-      )
       .to(titleToka, { x: "-5vw", y: "-3vh", opacity: 0.76 }, 0.06)
       .to(titleWorld, { x: "6vw", y: "4vh", opacity: 0.72 }, 0.06)
       .to(drops, { rotate: 12, scale: 1.12, opacity: 0.42 }, 0.1)
