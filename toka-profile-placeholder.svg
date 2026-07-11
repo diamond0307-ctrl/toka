@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <rect width="900" height="1200" fill="#050406"/>
+  <path d="M92 880 C220 746 296 776 418 640 C548 496 584 316 788 210" fill="none" stroke="#7d1024" stroke-width="46" stroke-linecap="round" opacity=".56"/>
+  <path d="M152 290 C284 150 478 144 608 276 C722 392 690 610 512 724 C342 832 162 744 122 560 C100 456 106 344 152 290Z" fill="#14090f" stroke="#f2eee8" stroke-opacity=".18" stroke-width="3"/>
+  <path d="M224 384 C324 312 492 324 596 418" fill="none" stroke="#ff19c8" stroke-width="14" stroke-linecap="round" opacity=".65"/>
+  <circle cx="345" cy="494" r="23" fill="#f2eee8" opacity=".72"/>
+  <circle cx="536" cy="494" r="23" fill="#f2eee8" opacity=".72"/>
+  <path d="M396 616 C432 646 484 644 516 612" fill="none" stroke="#f2eee8" stroke-width="10" stroke-linecap="round" opacity=".42"/>
+  <text x="450" y="1030" fill="#f2eee8" fill-opacity=".48" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="8" text-anchor="middle">TOKA PORTRAIT</text>
+</svg>
