@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="TOKA art works storefront hero motion prototype."
+    />
+    <title>TOKA WORLD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050406'/%3E%3Ctext x='7' y='42' fill='%23ff19c8' font-size='24' font-family='Arial' font-weight='900'%3ETK%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="site-splashes" aria-hidden="true">
+      <svg class="site-splash site-splash--magenta" viewBox="0 0 760 920">
+        <path d="M18 836C52 742 65 621 136 531C183 471 212 401 221 323C228 262 267 232 303 183C326 152 336 105 368 70C365 154 342 215 350 288C356 340 385 380 374 438C363 495 315 534 304 590C294 642 326 694 293 750C253 818 148 852 18 836Z" />
+        <path class="site-splash__stroke" d="M32 876C124 762 143 625 229 519C284 451 317 394 321 284" />
+        <path class="site-splash__stroke site-splash__stroke--thin" d="M102 772C159 691 146 608 205 535C239 492 276 467 287 419" />
+        <path d="M352 242C374 209 399 190 419 202C440 216 423 247 397 270C370 294 340 278 352 242Z" />
+        <circle cx="396" cy="142" r="19" />
+        <circle cx="450" cy="101" r="8" />
+        <circle cx="305" cy="92" r="11" />
+        <circle cx="431" cy="326" r="13" />
+        <circle cx="476" cy="354" r="6" />
+      </svg>
+
+      <svg class="site-splash site-splash--green" viewBox="0 0 900 650">
+        <path d="M90 563C218 518 325 464 430 380C521 307 601 209 805 54C716 198 672 274 626 342C583 405 574 438 620 471C673 509 760 508 872 525C728 550 637 578 544 565C442 551 386 513 297 541C224 564 168 605 90 563Z" />
+        <path class="site-splash__stroke" d="M32 604C222 563 380 481 514 358C638 245 730 149 842 21" />
+        <path class="site-splash__stroke site-splash__stroke--thin" d="M292 558C440 503 538 421 620 318C681 242 743 174 816 105" />
+        <path d="M690 452C716 414 746 391 773 406C799 423 779 461 744 483C710 504 667 489 690 452Z" />
+        <circle cx="621" cy="506" r="14" />
+        <circle cx="821" cy="368" r="9" />
+        <circle cx="850" cy="329" r="5" />
+      </svg>
+
+      <svg class="site-splash site-splash--cyan" viewBox="0 0 980 430">
+        <path d="M32 165C150 108 254 102 369 137C492 174 572 170 678 112C760 68 838 31 950 42C853 81 789 129 727 189C668 246 598 279 504 273C389 265 305 213 194 220C134 224 84 245 32 165Z" />
+        <path class="site-splash__stroke" d="M44 117C209 93 340 139 480 172C626 207 748 160 936 64" />
+        <path class="site-splash__stroke site-splash__stroke--thin" d="M136 276C289 216 416 236 553 267C672 294 756 260 862 211" />
+        <circle cx="217" cy="76" r="10" />
+        <circle cx="286" cy="48" r="5" />
+        <circle cx="771" cy="318" r="13" />
+        <circle cx="824" cy="344" r="7" />
+      </svg>
+
+      <svg class="site-splash site-splash--yellow" viewBox="0 0 520 560">
+        <path d="M83 510C102 411 134 343 205 278C257 230 276 190 286 91C330 178 330 251 291 310C253 368 217 396 194 487L83 510Z" />
+        <path class="site-splash__stroke site-splash__stroke--thin" d="M156 497C182 393 225 338 290 271C326 234 346 190 365 128" />
+        <circle cx="383" cy="74" r="15" />
+        <circle cx="431" cy="135" r="8" />
+        <circle cx="354" cy="182" r="6" />
+        <circle cx="449" cy="244" r="11" />
+        <circle cx="386" cy="332" r="5" />
+      </svg>
+
+      <svg class="site-splash site-splash--red" viewBox="0 0 520 440">
+        <path d="M31 315C107 270 177 244 230 181C274 129 299 80 360 36C337 101 339 145 378 180C414 213 457 231 493 284C415 247 350 238 295 275C243 309 185 345 112 363L31 315Z" />
+        <path class="site-splash__stroke" d="M48 365C137 310 221 286 286 220C337 168 372 116 420 76" />
+        <circle cx="417" cy="329" r="10" />
+        <circle cx="466" cy="361" r="5" />
+      </svg>
+    </div>
+
+    <header class="site-nav" aria-label="TOKA site navigation">
+      <a class="site-nav__brand" href="./" aria-label="TOKA home">TOKA</a>
+      <nav class="site-nav__links" aria-label="Primary navigation">
+        <a href="#works">WORKS</a>
+        <a href="#about">ABOUT</a>
+        <a href="#works">SHOP</a>
+      </nav>
+      <button class="site-nav__menu" type="button" aria-label="Open menu">
+        MENU
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="TOKA WORLD">
+        <div class="hero__void" aria-hidden="true"></div>
+
+        <h1 class="hero__title" aria-label="TOKA WORLD">
+          <span class="hero__title-line hero__title-line--toka">TOKA</span>
+          <span class="hero__title-line hero__title-line--world">WORLD</span>
+        </h1>
+
+        <figure class="hero__character">
+          <img
+            class="hero__character-image"
+            src="./assets/toka-hero-original.png"
+            alt="TOKA original artwork character"
+            width="1459"
+            height="2048"
+          />
+        </figure>
+
+        <svg
+          class="hero__impact"
+          viewBox="0 0 1000 1000"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <g class="hero__impact-burst">
+            <path d="M185 452C236 411 278 383 313 320C306 382 322 412 367 434C321 443 292 467 277 521C253 478 229 462 185 452Z" />
+            <path class="hero__impact-stroke" d="M111 492C205 459 278 415 343 338" />
+            <circle cx="157" cy="387" r="10" />
+            <circle cx="368" cy="291" r="7" />
+            <circle cx="403" cy="350" r="4" />
+          </g>
+        </svg>
+
+        <svg
+          class="hero__ink"
+          viewBox="0 0 1000 1000"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <filter id="ink-bleed">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+              <feColorMatrix
+                in="blur"
+                type="matrix"
+                values="1 0 0 0 0.08  0 1 0 0 0  0 0 1 0 0.04  0 0 0 1.2 0"
+              />
+            </filter>
+          </defs>
+          <path
+            class="hero__blood-line"
+            d="M520 414 C539 419 556 426 576 438"
+          />
+          <path
+            class="hero__bleed"
+            d="M78 572C174 518 322 512 418 568C477 603 475 674 402 704C306 744 162 710 84 662C38 634 35 596 78 572Z"
+            filter="url(#ink-bleed)"
+          />
+          <circle class="hero__drop hero__drop--one" cx="155" cy="240" r="12" />
+          <circle class="hero__drop hero__drop--two" cx="875" cy="352" r="8" />
+          <circle class="hero__drop hero__drop--three" cx="210" cy="712" r="10" />
+          <circle class="hero__drop hero__drop--four" cx="845" cy="745" r="7" />
+        </svg>
+
+        <div class="hero__enter" aria-hidden="true">
+          <span>ENTER TOKA WORLD</span>
+          <i></i>
+        </div>
+      </section>
+
+      <section class="selected-works" id="works" aria-label="All works">
+        <div class="selected-works__intro">
+          <p class="selected-works__eyebrow">ALL WORKS</p>
+          <h2>TOUCH THE ART</h2>
+        </div>
+        <div class="works-grid" data-works-grid></div>
+      </section>
+
+      <section class="about-toka" id="about" aria-label="About TOKA">
+        <div class="about-toka__inner">
+          <h2>ABOUT TOKA</h2>
+          <figure class="about-toka__portrait">
+            <img
+              src="./assets/toka-profile.jpg"
+              alt="TOKA portrait"
+              data-profile-image
+            />
+          </figure>
+          <div class="about-toka__copy">
+            <p class="about-toka__name">TOKA</p>
+            <p>
+              日常の中に潜む違和感や、言葉にならない感情を、<br />
+              少女や植物、金魚、線、色彩を通して描くアーティスト。
+            </p>
+            <p>
+              可愛さの奥にある痛み。<br />
+              美しさの中に残るエラー。
+            </p>
+            <p>
+              完成されたものではなく、<br />
+              揺れている途中の感情を作品として残している。
+            </p>
+            <a
+              class="about-toka__link"
+              href="https://www.instagram.com/toka_art010?igsh=cGN6dW52Zm1oMm04"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TOKA Instagram"
+            >
+              <svg
+                class="about-toka__link-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4.2" />
+                <circle cx="17.1" cy="6.9" r="1.1" />
+              </svg>
+              <span>INSTAGRAM</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__links">
+        <span>TOKA WORLD</span>
+        <a
+          href="https://www.instagram.com/toka_art010?igsh=cGN6dW52Zm1oMm04"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+        <a href="mailto:hello@example.com">Contact</a>
+        <span>© TOKA</span>
+      </div>
+      <p>TOKA</p>
+    </footer>
+
+    <section
+      class="work-modal"
+      data-work-modal
+      aria-hidden="true"
+      aria-labelledby="work-modal-title"
+      role="dialog"
+    >
+      <div class="work-modal__panel">
+        <button
+          class="work-modal__close"
+          type="button"
+          data-close-work
+          aria-label="作品詳細を閉じる"
+        >
+          CLOSE
+        </button>
+
+        <div class="work-modal__media">
+          <button
+            class="work-modal__image-button"
+            type="button"
+            data-open-viewer
+            aria-label="作品画像をフルスクリーンで表示"
+          >
+            <img class="work-modal__image" data-work-main-image alt="" />
+          </button>
+          <div class="work-modal__thumbs" data-work-thumbs></div>
+        </div>
+
+        <article class="work-modal__info">
+          <p class="work-modal__status" data-work-status></p>
+          <h2 id="work-modal-title" data-work-title></h2>
+          <dl class="work-modal__specs" data-work-specs></dl>
+          <p class="work-modal__description" data-work-description></p>
+          <p class="work-modal__price" data-work-price></p>
+          <button class="purchase-button" type="button">PURCHASE</button>
+          <p class="work-modal__purchase-note" data-purchase-note aria-live="polite"></p>
+        </article>
+      </div>
+    </section>
+
+    <section
+      class="image-viewer"
+      data-image-viewer
+      aria-hidden="true"
+      aria-label="作品画像フルスクリーン表示"
+      role="dialog"
+    >
+      <div class="image-viewer__topbar">
+        <p data-viewer-count></p>
+        <button
+          class="image-viewer__close"
+          type="button"
+          data-close-viewer
+          aria-label="フルスクリーン表示を閉じる"
+        >
+          CLOSE
+        </button>
+      </div>
+      <button
+        class="image-viewer__nav image-viewer__nav--prev"
+        type="button"
+        data-viewer-prev
+        aria-label="前の画像"
+      >
+        PREV
+      </button>
+      <div class="image-viewer__stage" data-viewer-stage>
+        <img class="image-viewer__image" data-viewer-image alt="" />
+      </div>
+      <button
+        class="image-viewer__nav image-viewer__nav--next"
+        type="button"
+        data-viewer-next
+        aria-label="次の画像"
+      >
+        NEXT
+      </button>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      defer
+    ></script>
+    <script src="./script.js" defer></script>
+  </body>
+</html>
